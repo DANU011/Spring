@@ -1,9 +1,10 @@
 import pandas as pd
 import xgboost as xgb
-from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
+
+# train 모델 쪼개서 테스트 해보고 test 모델로 다시 돌린 버전
 
 # 1. 데이터 로드 및 전처리
 data = pd.read_csv('train.csv')

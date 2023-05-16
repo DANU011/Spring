@@ -23,8 +23,6 @@ scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
-"""XGBoost 모델을 훈련"""
-
 # XGBoost 모델 훈련
 model = xgb.XGBClassifier()
 model.fit(X_train, y_train)
@@ -42,15 +40,6 @@ print(y_pred_decoded)
 
 for i in range(len(y_pred)):
     print(f"Test sample {i+1}: Predicted={label_encoder.inverse_transform([y_pred[i]])[0]}, Actual={y_test[i]}")
-
-# 행동패턴 + 임계값 0.05 범위 벗어나면 1 아니면 0
-for i in range(len(y_pred)):
-    diff = np.abs(y_test[i] - y_pred[i])
-    if diff <= 0.05:
-        threshold = 0
-    else:
-        threshold = 1
-    print(f"Test sample {i+1}: Predicted={label_encoder.inverse_transform([y_pred[i]])[0]}, Actual={y_test[i]}, Threshold={threshold}")
 
 # confusion matrix
 cm = confusion_matrix(y_test, y_pred)
